@@ -70,6 +70,22 @@ function update(){
 
     document.getElementById("wait").textContent =
         `${min}分 ${sec}秒`;
+
+    const waitBox = document.querySelector(".highlight");
+    const notice = document.getElementById("nightNotice");
+
+    //22:00-04:00判定
+    const isNight =
+        (daySec >= 22*3600 || daySec < 4*3600) ||
+        (nightSec >= 22*3600 || nightSec < 4*3600);
+
+    if(isNight){
+        waitBox.classList.add("night");
+        notice.textContent = "現在夜です！";
+    }else{
+        waitBox.classList.remove("night");
+        notice.textContent = "";
+    }
 }
 
 setInterval(update,200);

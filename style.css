@@ -125,3 +125,19 @@ font-size:16px;
 }
 
 }
+
+.night{
+background:linear-gradient(
+135deg,
+#1a0033,
+#000814
+);
+border:1px solid #4b2a7a;
+}
+
+.nightNotice{
+margin-top:10px;
+font-size:14px;
+color:#9ccaff;
+font-weight:600;
+}
