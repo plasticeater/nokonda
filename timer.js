@@ -81,7 +81,7 @@ function update(){
 
     if(isNight){
         waitBox.classList.add("night");
-        notice.textContent = "現在夜です！";
+        notice.textContent = "Terminalは開いています！";
     }else{
         waitBox.classList.remove("night");
         notice.textContent = "";
