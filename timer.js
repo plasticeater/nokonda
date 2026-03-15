@@ -33,6 +33,15 @@ function secondsUntil22(sec){
     return (DAY_SECONDS-sec)+target;
 }
 
+function secondsUntil4(sec){
+
+    const target = 4 * 3600;
+
+    if(sec < target) return target - sec;
+
+    return (DAY_SECONDS - sec) + target;
+}
+
 function formatRealTime(){
 
     const now = new Date();
@@ -42,6 +51,19 @@ function formatRealTime(){
     const s = String(now.getSeconds()).padStart(2,'0');
 
     return `${h}:${m}:${s}`;
+}
+
+function setFutureTime(elementId, seconds){
+
+    const now = new Date();
+    const future = new Date(now.getTime() + seconds*1000);
+
+    const h = String(future.getHours()).padStart(2,'0');
+    const m = String(future.getMinutes()).padStart(2,'0');
+    const s = String(future.getSeconds()).padStart(2,'0');
+
+    document.getElementById(elementId).textContent =
+        `現実時間  ${h}:${m}:${s}`;
 }
 
 function update(){
@@ -71,8 +93,12 @@ function update(){
     document.getElementById("wait").textContent =
         `${min}分 ${sec}秒`;
 
+    setFutureTime("waitReal", waitReal);
+
     const waitBox = document.querySelector(".highlight");
     const notice = document.getElementById("nightNotice");
+    const nightTimer = document.getElementById("nightTimer");
+    const nightCard = document.getElementById("nightCard");
 
     //22:00-04:00判定
     const isNight =
@@ -80,11 +106,35 @@ function update(){
         (nightSec >= 22*3600 || nightSec < 4*3600);
 
     if(isNight){
+
         waitBox.classList.add("night");
+
+        nightCard.style.display = "block";
         notice.textContent = "Terminalは開いています！";
+
+        const dayWait4Game = secondsUntil4(daySec);
+        const nightWait4Game = secondsUntil4(nightSec);
+
+        const wait4Game = Math.min(dayWait4Game, nightWait4Game);
+        const wait4Real = wait4Game / 7;
+
+        const min = Math.floor(wait4Real/60);
+        const sec = Math.floor(wait4Real%60);
+
+        nightTimer.textContent =
+            `${min}分 ${sec}秒`;
+
+        setFutureTime("nightReal", wait4Real);
+
     }else{
+
         waitBox.classList.remove("night");
+
+        nightCard.style.display = "none";
         notice.textContent = "";
+        nightTimer.textContent = "";
+        document.getElementById("nightReal").textContent = "";
+
     }
 }
 

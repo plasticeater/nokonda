@@ -114,6 +114,14 @@ letter-spacing:.04em;
 
 }
 
+.realTime{
+
+font-size:14px;
+opacity:.75;
+margin-top:4px;
+
+}
+
 @media (max-width:500px){
 
 .countdown{
@@ -135,9 +143,28 @@ background:linear-gradient(
 border:1px solid #4b2a7a;
 }
 
+.nightCard{
+
+text-align:center;
+
+background:
+linear-gradient(
+135deg,
+#1a0033,
+#000814
+);
+
+border:1px solid #4b2a7a;
+
+display:none;
+
+}
+
 .nightNotice{
-margin-top:10px;
+
+margin-bottom:6px;
 font-size:14px;
 color:#9ccaff;
 font-weight:600;
+
 }
