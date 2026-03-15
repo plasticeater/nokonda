@@ -110,7 +110,7 @@ function update(){
         waitBox.classList.add("night");
 
         nightCard.style.display = "block";
-        notice.textContent = "Terminalは開いています！";
+        notice.textContent = "Terminal残り時間";
 
         const dayWait4Game = secondsUntil4(daySec);
         const nightWait4Game = secondsUntil4(nightSec);
