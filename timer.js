@@ -24,18 +24,18 @@ function format(sec){
            `${String(s).padStart(2,'0')}`;
 }
 
-function secondsUntil22(sec){
+function secondsUntil21(sec){
 //22時までの時間計算用
-    const target = 22*3600;
+    const target = 21*3600;
 
     if(sec <= target) return target-sec;
 
     return (DAY_SECONDS-sec)+target;
 }
 
-function secondsUntil4(sec){
+function secondsUntil6(sec){
 
-    const target = 4 * 3600;
+    const target = 6 * 3600;
 
     if(sec < target) return target - sec;
 
@@ -80,8 +80,8 @@ function update(){
     document.getElementById("realClock").textContent =
         formatRealTime();
 
-    const dayWaitGame = secondsUntil22(daySec);
-    const nightWaitGame = secondsUntil22(nightSec);
+    const dayWaitGame = secondsUntil21(daySec);
+    const nightWaitGame = secondsUntil21(nightSec);
 
     const waitGame = Math.min(dayWaitGame,nightWaitGame);
 
@@ -100,10 +100,10 @@ function update(){
     const nightTimer = document.getElementById("nightTimer");
     const nightCard = document.getElementById("nightCard");
 
-    //22:00-04:00判定
+    //21:00-06:00判定
     const isNight =
-        (daySec >= 22*3600 || daySec < 4*3600) ||
-        (nightSec >= 22*3600 || nightSec < 4*3600);
+        (daySec >= 21*3600 || daySec < 6*3600) ||
+        (nightSec >= 21*3600 || nightSec < 6*3600);
 
     if(isNight){
 
@@ -112,8 +112,8 @@ function update(){
         nightCard.style.display = "block";
         notice.textContent = "Terminal残り時間";
 
-        const dayWait4Game = secondsUntil4(daySec);
-        const nightWait4Game = secondsUntil4(nightSec);
+        const dayWait4Game = secondsUntil6(daySec);
+        const nightWait4Game = secondsUntil6(nightSec);
 
         const wait4Game = Math.min(dayWait4Game, nightWait4Game);
         const wait4Real = wait4Game / 7;
